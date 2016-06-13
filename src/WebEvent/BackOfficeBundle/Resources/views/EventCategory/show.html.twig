@@ -1,0 +1,28 @@
+{% extends '::layout-login.html.twig' %}
+
+{% block content %}
+
+    <div class="company-show">
+
+
+    <div class="row">
+        <div class="col-md-7">
+            <div>{{ entity.nom }}</div>
+        </div>
+
+        <div class="col-md-5">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+
+            <a href="{{ path('company') }}">
+                Back to the list
+            </a>
+            <a href="{{ path('company_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+       {{ form(delete_form) }}
+    </div>
+
+
+{% endblock %}

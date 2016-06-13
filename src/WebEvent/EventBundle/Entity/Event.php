@@ -1,0 +1,178 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: clementine
+ * Date: 26/07/15
+ * Time: 23:48
+ */
+namespace WebEvent\EventBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="event")
+ */
+class Event
+
+{
+    /**
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(name="id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id_event;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable = true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="short_description", type="text", length=300, nullable = true)
+     */
+    private $short_description;
+
+    /**
+     * @var EventCategory $category
+     *
+     * @ORM\ManyToOne(targetEntity="EventCategory", inversedBy="events", cascade={"persist", "merge"})
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="EventCategory_idEventCategory", referencedColumnName="id")
+     * })
+     */
+    private $event_category;
+
+    /**
+     * @var ArrayCollection $editions
+     *
+     * @ORM\OneToMany(targetEntity="Edition", mappedBy="edition", cascade={"persist", "remove", "merge"})
+     */
+    private $editions;
+
+    /**
+     * Get id_event
+     *
+     * @return integer 
+     */
+    public function getIdEvent()
+    {
+        return $this->id_event;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Event
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set short_description
+     *
+     * @param string $shortDescription
+     * @return Event
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->short_description = $shortDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get short_description
+     *
+     * @return string 
+     */
+    public function getShortDescription()
+    {
+        return $this->short_description;
+    }
+
+
+
+
+    /**
+     * Set event_category
+     *
+     * @param \WebEvent\EventBundle\Entity\EventCategory $eventCategory
+     * @return Event
+     */
+    public function setEventCategory(\WebEvent\EventBundle\Entity\EventCategory $eventCategory = null)
+    {
+        $this->event_category = $eventCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get event_category
+     *
+     * @return \WebEvent\EventBundle\Entity\EventCategory 
+     */
+    public function getEventCategory()
+    {
+        return $this->event_category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->editions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add editions
+     *
+     * @param \WebEvent\EventBundle\Entity\Edition $editions
+     * @return Event
+     */
+    public function addEdition(\WebEvent\EventBundle\Entity\Edition $editions)
+    {
+        $this->editions[] = $editions;
+
+        return $this;
+    }
+
+    /**
+     * Remove editions
+     *
+     * @param \WebEvent\EventBundle\Entity\Edition $editions
+     */
+    public function removeEdition(\WebEvent\EventBundle\Entity\Edition $editions)
+    {
+        $this->editions->removeElement($editions);
+    }
+
+    /**
+     * Get editions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEditions()
+    {
+        return $this->editions;
+    }
+}

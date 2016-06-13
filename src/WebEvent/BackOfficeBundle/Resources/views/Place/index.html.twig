@@ -1,0 +1,46 @@
+{% extends '::back-office.html.twig' %}
+
+    {% block header %}
+    {% endblock %}
+    {% block h1 %}
+        Lieux
+    {% endblock %}
+    {% block content %}
+        <a  class="btn btn-primary" role="button" href="{{ path('web_event_backofficebundle_place_new') }}"> Créer un lieux</a>
+
+</br>
+        <div class="box">
+        {% if places %}
+            <table class="table table-striped table-bordered">
+                <thead>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Ville</th>
+                </thead>
+                <tbody>
+                {% for entity in places %}
+                    <tr>
+                        <td> {{ entity.id }}</td>
+
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.address.ville }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info add-first-contact" role="alert">
+                Aucun événement n'est renseigné
+                <a href="{{ path('web_event_backofficebundle_place_new') }}" class="alert-link button-add-contact">Clic ici pour en ajouter un !</a>
+            </div>
+        {% endif %}
+</div>
+    {% endblock %}
+
+
+
+
+
+
+{% block footer %}
+{% endblock %}

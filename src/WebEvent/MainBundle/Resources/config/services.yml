@@ -1,0 +1,16 @@
+services:
+#    web_event_main.example:
+#        class: WebEvent\MainBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    web_event_address.form.type:
+        class: WebEvent\MainBundle\Form\Type\AddressType
+        tags:
+            - { name: form.type, alias: address }
+    web_event_link.form.type:
+        class: WebEvent\MainBundle\Form\Type\LinkType
+        tags:
+            - { name: form.type, alias: link }
+    web_event_link_category.form.type:
+        class: WebEvent\MainBundle\Form\Type\LinkCategoryType
+        tags:
+            - { name: form.type, alias: link_category }

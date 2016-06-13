@@ -1,0 +1,52 @@
+{% extends 'WebEventFrontOfficeBundle::layout-front.html.twig' %}
+{% block container %}
+<div class="row">
+    {#<div class="col-xs-12 col-md-6">#}
+
+    {#</div>#}
+    {#<div class="col-xs-12 col-md-5">#}
+    <section class="projects-1">
+        <div class="container">
+            <div class="title">
+                <a href="{{ path('web_event_main_place_change', { 'city_selected' : 'Paris' }) }}"
+                   class="{% if city == 'Paris'%} active {% endif %}" >Paris</a>
+                <a href="{{ path('web_event_main_place_change', { 'city_selected' : 'Lyon' }) }}"
+                   class="{% if city == 'Lyon'%} active {% endif %}" >Lyon</a>
+                <a href="{{ path('web_event_main_place_change', { 'city_selected' : 'Bordeaux' }) }}"
+                class="{% if city == 'Bordeaux'%} active {% endif %}" >Bordeaux</a>
+                <a href="{{ path('web_event_main_place_change', { 'city_selected' : 'Lille' }) }}"
+                   class="{% if city == 'Lille'%} active {% endif %}" >Lille</a>
+                <a href="{{ path('web_event_main_place_change', { 'city_selected' : 'Marseille' }) }}"
+                   class="{% if city == 'Marseille'%} active {% endif %}" >Marseille</a>
+            </div>
+            {% for place in places %}
+                <div class="head-box">
+                    <div class="brand">
+                        {{ place.name }}
+                    </div>
+                    <p>Description</p>
+
+                    <div class="features">
+
+                        <div>
+                            <a href="{{ path('web_event_main_place_detail',{ 'city_selected': place.address.ville,'name': place.name|replace('  ', '-')|lower }) }}">
+                                <span class="fui-info"></span> Informations
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <span class="fui-mic"></span> Les évènements
+                            </a>
+                        </div>
+                    </div>
+                </div><br>
+            {% endfor %}
+        </div>
+        <!--/.container-->
+    </section>
+
+    {#</div>#}
+    {#</div>#}
+
+
+    {% endblock %}

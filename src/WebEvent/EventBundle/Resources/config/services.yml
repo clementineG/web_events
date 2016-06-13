@@ -1,0 +1,13 @@
+services:
+#    web_event_event.example:
+#        class: WebEvent\EventBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    web_event_event.form.type:
+        class: WebEvent\EventBundle\Form\Type\EventType
+        tags:
+            - { name: form.type, alias: event }
+
+    web_event_edition.form.type:
+        class: WebEvent\EventBundle\Form\Type\EditionType
+        tags:
+            - { name: form.type, alias: edition }

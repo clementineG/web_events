@@ -1,0 +1,109 @@
+{% extends '::back-office.html.twig' %}
+
+{% block content %}
+
+    <h1>Nouvel évènement</h1>
+    <div class="row">
+
+        <div class="col-xs-6">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group col-xs-12">
+                {{ form_label(form.event, "Nom*", {'label_attr': {'class': 'col-sm-12 control-label required'}}) }}
+                {{ form_errors(form.event) }}
+                <div class="col-sm-12">{{ form_widget(form.event.name, {'attr': {'class': 'form-control','required':'required'}}) }}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.event, "Résumé", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.event) }}
+                <div class="col-sm-12">{{ form_widget(form.event.short_description, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.event, "Catégorie de l'évènement*", {'label_attr': {'class': 'col-sm-12 control-label required'}}) }}
+                {{ form_errors(form.event.event_category) }}
+                <div class="col-sm-12">{{ form_widget(form.event.event_category, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+            <h3>Informations édition</h3>
+            <div class="form-group col-xs-6">
+                {{ form_label(form.price, "Prix", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.price) }}
+                <div class="col-sm-12">{{ form_widget(form.price, {'attr': {'class': 'form-control','value':0}}) }}</div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                {{ form_label(form.link.url, "Lien evenement*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                <div class="col-sm-12">{{ form_widget(form.link.url, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                {{ form_label(form.start, "Début manifestation*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.start) }}
+                <div class="col-sm-12">{{ form_widget(form.start,{'attr': {'type': 'datetime'}}) }}</div>
+            </div>
+            <div class="form-group col-xs-6">
+                {{ form_label(form.end, "Fin manifestation*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.end) }}
+                <div class="col-sm-12">{{ form_widget(form.end) }}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.description, "Description détaillée*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.description) }}
+                <div class="col-sm-12">{{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows':6}}) }}</div>
+            </div>
+
+
+            <h3>Contenu SEO</h3>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.title, "Balise title", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.title) }}
+                <div class="col-sm-12">{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.h1, "Balise H1*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.h1) }}
+                <div class="col-sm-12">{{ form_widget(form.h1, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.h2, "Balise H2", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.h2) }}
+                <div class="col-sm-12">{{ form_widget(form.h2, {'attr': {}}) }}</div>
+            </div>
+            <h3>Lieu de l'édition</h3>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.address, "Adresse*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.address) }}
+                <div class="col-sm-12">{{ form_widget(form.address.address, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                {{ form_label(form.address, "Code postal*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.address) }}
+                <div class="col-sm-8">{{ form_widget(form.address.cp, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+
+            <div class="form-group col-xs-12">
+                {{ form_label(form.address, "Ville*", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.address) }}
+                <div class="col-sm-8">{{ form_widget(form.address.ville, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+
+            <div class="form-group col-xs-12">
+                {{ form_label(form.place, "Lieu", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.place) }}
+                <div class="col-sm-12">{{ form_widget(form.place, {'attr': {'class': 'form-control'}}) }}</div>
+            </div>
+
+            <h3>Logo de l'édition</h3>
+
+            <div class="form-group col-xs-12">
+                {{ form_label(form.cover.file, "Image de l'édition", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+                {{ form_errors(form.cover.file) }}
+                <div class="col-sm-12">{{ form_widget(form.cover.file, {'attr': {'class': 'form-control', 'type':'file'}}) }}</div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}

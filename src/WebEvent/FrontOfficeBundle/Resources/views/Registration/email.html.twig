@@ -1,0 +1,39 @@
+{% block subject %}
+    {% autoescape false %}
+    {{ 'registration.email.subject'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+    {% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+    {% autoescape false %}
+    {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+    {% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+    {% include 'WebEventFrontOfficeBundle:Registration:inc/email.html.twig' %}
+{% endblock %}
+- Création de la vue confirmed :
+nano src/WebEvent/FrontOfficeBundle/Resources/views/Registration/confirmed.html.twig
+
+{% extends 'WebEventFrontOfficeBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">{{ 'title_user_register'|trans }}</h2>
+                </div>
+                <div class="panel-body">
+                    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+                    {% if app.session is not empty %}
+                        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

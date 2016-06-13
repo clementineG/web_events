@@ -1,0 +1,45 @@
+{% extends '::back-office.html.twig' %}
+
+    {% block header %}
+    {% endblock %}
+    {% block h1 %}
+        Catégories d'évènement
+    {% endblock %}
+    {% block content %}
+        <a  class="btn btn-primary" role="button" href="{{ path('web_event_backofficebundle_event_category_new') }}"> Créer une catégorie</a>
+
+</br>
+        <div class="box">
+        {% if categories %}
+            <table class="table table-striped table-bordered">
+                <thead>
+                <th>ID</th>
+                <th>Nom</th>
+                </thead>
+                <tbody>
+                {% for entity in categories %}
+                    <tr>
+                        <td> {{ entity.id }}</td>
+
+                        <td>{{ entity.name }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info add-first-contact" role="alert">
+                Aucun événement n'est renseigné
+                <a href="{{ path('web_event_backofficebundle_event_category_new') }}" class="alert-link button-add-contact">Clic ici pour en ajouter un !</a>
+            </div>
+        {% endif %}
+</div>
+    {% endblock %}
+
+
+
+
+
+
+{% block footer %}
+{% endblock %}

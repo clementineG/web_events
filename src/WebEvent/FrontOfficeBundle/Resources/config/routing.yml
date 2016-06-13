@@ -1,0 +1,11 @@
+web_event_front_office_homepage:
+    path:     /tempdefault_homepage
+    defaults: { _controller: WebEventFrontOfficeBundle:Default:index }
+
+web_event_front_office_home:
+    path:     /
+    defaults: { _controller: WebEventFrontOfficeBundle:Home:index }
+
+# SECURITY
+web_event_front_office_security:
+    resource: "@WebEventFrontOfficeBundle/Resources/config/routing/security.yml"

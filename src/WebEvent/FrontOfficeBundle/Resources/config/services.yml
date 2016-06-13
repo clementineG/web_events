@@ -1,0 +1,12 @@
+services:
+    user.form.profile.type:
+        class: WebEvent\FrontOfficeBundle\Form\Type\ProfileType
+        parent: fos_user.profile.form.type
+        tags:
+            - { name: form.type, alias: web_event_fos_user_profile }
+
+    user.form.register.type:
+        class: WebEvent\FrontOfficeBundle\Form\Type\RegisterType
+        parent: fos_user.registration.form.type
+        tags:
+            - { name: form.type, alias: web_event_fos_user_register }

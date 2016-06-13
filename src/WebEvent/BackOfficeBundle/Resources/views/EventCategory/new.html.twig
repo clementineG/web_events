@@ -1,0 +1,25 @@
+{% extends '::back-office.html.twig' %}
+
+{% block content %}
+
+    <h1>Nouvel évènement</h1>
+    <div class="row">
+
+        <div class="col-xs-6">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group col-xs-12">
+                {{ form_label(form.name, "Nom*", {'label_attr': {'class': 'col-sm-12 control-label required'}}) }}
+                {{ form_errors(form.name) }}
+                <div class="col-sm-12">{{ form_widget(form.name, {'attr': {'class': 'form-control','required':'required'}}) }}</div>
+            </div>
+
+
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}

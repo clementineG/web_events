@@ -1,0 +1,63 @@
+{% extends '::layout-login.html.twig' %}
+
+{% block content %}
+
+    <div class="company-show">
+
+
+    <div class="row">
+        <div class="col-md-7">
+            <div>{{ entity.nom }}</div>
+            <div>{{ entity.description }}</div>
+            <div>{{ entity.adresse }}</div>
+        </div>
+
+        <div class="col-md-5">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+
+            <a href="{{ path('company') }}">
+                Back to the list
+            </a>
+            <a href="{{ path('company_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+       {{ form(delete_form) }}
+    </div>
+
+    {% block javascripts %}
+
+        <script type="text/javascript">
+          function initialize() {
+            var mapOptions = {
+              center: { lat: {{entity.adresse.latitude}}, lng: {{entity.adresse.longitude}}},
+              zoom: 13
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: { lat: {{entity.adresse.latitude}}, lng: {{entity.adresse.longitude}}},
+                map:map,
+                title:"{{entity.nom}}",
+                draggable: true
+            });
+            var contentString = "<h4>{{entity.nom}}</h4>"+
+                "<div><p>{{entity.description}}</p></div>"+
+                "<div><p>{{entity.adresse}}</p></div>";
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+            });
+
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
+    {% endblock %}
+
+{% endblock %}

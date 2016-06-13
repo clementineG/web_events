@@ -1,0 +1,74 @@
+web_event_backofficebundle_home:
+    pattern: /
+    defaults: { _controller: "WebEventBackOfficeBundle:Default:index" }
+    requirements:
+        _method: GET
+
+
+web_event_backofficebundle_event:
+    pattern: /event
+    defaults: { _controller: "WebEventBackOfficeBundle:Event:index" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_event_create:
+    path:     /event/create
+    defaults: { _controller: "WebEventBackOfficeBundle:Event:create" }
+    requirements: { _method: post }
+
+web_event_backofficebundle_event_new:
+    path:     /new_event
+    defaults: { _controller: "WebEventBackOfficeBundle:Event:new" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_linktype:
+    pattern: /linktype
+    defaults: { _controller: "WebEventBackOfficeBundle:LinkType:index" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_linktype_create:
+    path:     /linktype/create
+    defaults: { _controller: "WebEventBackOfficeBundle:LinkType:create" }
+    requirements: { _method: post }
+
+web_event_backofficebundle_linktype_new:
+    path:     /linktype/new
+    defaults: { _controller: "WebEventBackOfficeBundle:LinkType:new" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_place:
+    pattern: /place
+    defaults: { _controller: "WebEventBackOfficeBundle:Place:index" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_place_create:
+    path:     /place/create
+    defaults: { _controller: "WebEventBackOfficeBundle:Place:create" }
+    requirements: { _method: post }
+
+web_event_backofficebundle_place_new:
+    pattern: /new_place
+    defaults: { _controller: "WebEventBackOfficeBundle:Place:new" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_event_category:
+    pattern: /event_category
+    defaults: { _controller: "WebEventBackOfficeBundle:EventCategory:index" }
+    requirements:
+        _method: GET
+
+web_event_backofficebundle_event_category_create:
+    path:     /event_category/create
+    defaults: { _controller: "WebEventBackOfficeBundle:EventCategory:create" }
+    requirements: { _method: post }
+
+web_event_backofficebundle_event_category_new:
+    path:     /new_event_category
+    defaults: { _controller: "WebEventBackOfficeBundle:EventCategory:new" }
+    requirements:
+        _method: GET

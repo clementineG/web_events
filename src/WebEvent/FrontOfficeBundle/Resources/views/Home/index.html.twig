@@ -1,0 +1,120 @@
+{% extends 'WebEventFrontOfficeBundle::layout-front.html.twig' %}
+{% block container %}
+
+    <section class="header-6-sub  header-15-sub bg-midnight-blue">
+        <div class="background">
+            &nbsp;
+        </div>
+        <div class="container">
+            <div class="hero-unit">
+                <h1>WebEvents</h1>
+
+                <h3>
+                    Votre agenda des évènements connectés
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="signup-form">
+                        <form>
+                            <div class="clearfix">
+                                <input type="text" class="form-control" placeholder="Où ?">
+                                <input type="date" class="form-control" placeholder="Quand ? ">
+                                <input type="text" class="form-control" placeholder="Quoi ? ">
+                                <button type="submit" class="btn btn-primary">Rechercher</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Section catégorie #}
+    <section class="projects-1">
+        <div class="container">
+            <h3>Choisissez votre catégorie </h3>
+
+            <div class="projects row">
+                <div class="project-wrapper col-sm-4">
+                    <div class="project">
+                        <div class="photo-wrapper bg-turquoise">
+                            <div class="photo">
+                                <img src="web/bundles/webeventfrontoffice/img/dev.jpg" alt="Les évènements Dev">
+                            </div>
+                            <a href="#" class="overlay"><span class="fui-window"></span></a>
+                        </div>
+                        <div class="info">
+                            <a href="#" class="name color-pomegranate">Dev</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="project-wrapper col-sm-4">
+                    <div class="project">
+                        <div class="photo-wrapper bg-orange">
+                            <div class="photo">
+                                <img src="web/bundles/webeventfrontoffice/img/startUp.jpg" alt="">
+                            </div>
+                            <a href="#" class="overlay"><span class="fui-tag"></span></a>
+                        </div>
+                        <div class="info">
+                            <a href="#" class="name color-orange">SEO</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-wrapper col-sm-4 color-belize-hole">
+                    <div class="project">
+                        <div class="photo-wrapper bg-belize-hole">
+                            <div class="photo">
+                                <img src="bundles/webeventfrontoffice/img/webMarketing.jpg" alt="">
+                            </div>
+                            <a href="#" class="overlay"><span class="fui-round-bubble"></span></a>
+                        </div>
+                        <div class="info">
+                            <a href="#" class="name ">Start Up</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.container-->
+    </section>
+
+    <section class="projects-4">
+        <div class="container">
+            <h3>Les prochains évènements digitaux en France sont ici ! </h3>
+
+            {# Events List #}
+
+
+            {#{% for ev in events %}#}
+            {#{% if loop.first %}#}
+            {#<div class="projects row">#}
+                {#{% endif %}#}
+                {#<div class="project-wrapper col-sm-4">#}
+                    {#<div class="project">#}
+                        {#<div class="photo-wrapper {% if ev.eventCategory.id == 4 %} bg-turquoise {% elseif ev.eventCategory.id == 2 %} bg-belize-hole {% elseif ev.eventCategory.id == 3 %} bg-orange {% endif %} ">#}
+                            {#<div class="photo"></div>#}
+                            {#<a href="#" class="overlay">#}
+                                {#{#<span class="fui-cmd"></span>#}
+                                {#<span href="#"#}
+                                      {#class="text-center name color-belize-hole">{{ ev.name }}</span>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+                {#{% if loop.index%3 == 0 or loop.last and not(loop.first) %}#}
+            {#</div>#}
+            {#<div class="projects row">#}
+                {#{% endif %}#}
+                {#{% endfor %}#}
+
+            </div>
+            <!--/.container-->
+    </section>
+
+{% endblock %}

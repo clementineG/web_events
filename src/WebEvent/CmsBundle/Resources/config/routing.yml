@@ -1,0 +1,3 @@
+web_event_cms_homepage:
+    path:     /
+    defaults: { _controller: WebEventCmsBundle:Default:index }

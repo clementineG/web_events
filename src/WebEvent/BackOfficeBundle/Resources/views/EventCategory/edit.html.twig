@@ -1,0 +1,225 @@
+{% extends '::layout-login.html.twig' %}
+
+{% block content %}
+
+    <div class="company-show">
+		
+	    <div class="row">
+	        <div class="col-md-12">
+				<h1 class="text-center">
+					{{entity.nom}}
+				</h1>
+			</div>
+		</div>
+
+	    <div class="row">
+	    	<div class="col-md-12 sub-title toggle-company-informations">
+	    		<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+	    		Informations :
+	    	</div>
+	    	<div class="company-informations">
+	    		
+		        <div class="col-md-7 form-horizontal">
+
+					{{ form_start(edit_form) }}
+				    {{ form_errors(edit_form) }}
+					
+				    <div class="form-group">
+				        {{ form_label(edit_form.nom, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+				        {{ form_errors(edit_form.nom) }}
+				        <div class="col-sm-9">{{ form_widget(edit_form.nom, {'attr': {'class': 'form-control'}}) }}</div>
+				    </div>
+
+				    <div class="form-group">
+				        {{ form_label(edit_form.description, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+				        {{ form_errors(edit_form.description) }}
+				        <div class="col-sm-9">{{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}</div>
+				    </div>
+
+				    <div class="form-group">
+				        {{ form_label(edit_form.site, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+				        {{ form_errors(edit_form.site) }}
+				        <div class="col-sm-9">
+	     			 		{% if entity.site %}<div class="input-group">{% endif %}
+					        	{{ form_widget(edit_form.site, {'attr': {'class': 'form-control'}}) }}
+					        	{% if entity.site %}
+						        	<div class="input-group-addon">
+							        	<a href="{{ entity.site}}" target="blank" class="">
+								        	<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+							        	</a>
+					        		</div>
+					        	{% endif %}
+	     			 		{% if entity.site %}</div>{% endif %}
+				    	</div>
+				    </div>
+
+				    <div class="form-group">
+				        {{ form_label(edit_form.adresse.adresse, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+				        {{ form_errors(edit_form.adresse.adresse) }}
+				        <div class="col-sm-9">{{ form_widget(edit_form.adresse.adresse, {'attr': {'class': 'form-control'}}) }}</div>
+				    </div>
+
+				    <div class="form-group">
+				        {{ form_label(edit_form.adresse.cp, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+				        {{ form_errors(edit_form.adresse.cp) }}
+				        <div class="col-sm-9">{{ form_widget(edit_form.adresse.cp, {'attr': {'class': 'form-control'}}) }}</div>
+				    </div>
+
+				    <div class="form-group">
+				        {{ form_label(edit_form.adresse.ville, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+				        {{ form_errors(edit_form.adresse.ville) }}
+				        <div class="col-sm-9">{{ form_widget(edit_form.adresse.ville, {'attr': {'class': 'form-control'}}) }}</div>
+				    </div>
+
+					{{ form_end(edit_form) }}
+					{{ form(delete_form) }}
+		        </div>
+
+		        <div class="col-md-5">
+					
+					<div class="panel panel-default">
+		    	        <div id="map-canvas"></div>
+				  		<div id="textMapGroup" class="panel-footer">
+				  			Déplacez le marqueur pour enregistrer des nouvelles coordonnées
+						
+							<div id="buttonMapGroup" class="hidden row">
+							  		<div class="col-md-6">
+							  			<button type="button" id="buttonMapCancel" class=" btn btn-danger btn-block">Annuler</button>
+								  	</div>
+								  	<!-- TODO : Modifier les boutons lors du clic : devient "chargement..." -->
+							  		<div class="col-md-6">
+						  				<button id="buttonMapSave" data-loading-text="Loading..." type="button" class="btn btn-success btn-block">Enregistrer</button>
+							 	 	</div>
+							</div>
+				  		</div>
+					</div>
+		        </div>
+	    	</div>
+	    </div>
+
+		<div class="row">
+		    <div class="col-md-12 sub-title toggle-company-contacts">
+		    	<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+		        Contacts :
+		    </div>
+		</div>
+    	<div class="company-contacts">
+			{{ render(controller('mcEntrepriseBundle:Contact:showAllByCompany', { 'id': entity.id })) }}
+		</div>
+		
+		<div class="row">
+		    <div class="col-md-12 sub-title toggle-company-candidatures">
+		    	<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+		        Mes candidatures :
+		    </div>
+		</div>
+    	<div class="company-candidatures">
+			{{ render(controller('mcCoreBundle:Application:showAllByCompany', { 'id': entity.id })) }}
+		</div>
+    </div>
+
+    <script type="text/javascript">
+	  	function initialize() {
+
+			var styles=[ { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#43B3FE" } ] },{ "featureType": "landscape.man_made", "stylers": [ { "color": "#E6D9C8" } ] },{ "featureType": "poi.park", "elementType": "geometry", "stylers": [ { "color": "#B5E357" } ] },{ "featureType": "transit.line", "stylers": [ { "visibility": "off" } ] },{ "featureType": "road", "elementType": "geometry", "stylers": [ { "color": "#FEFEFE" } ] },{ } ];
+
+	    	var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
+
+	        var mapOptions = {
+	      		center: { lat: {{entity.adresse.latitude}}, lng: {{entity.adresse.longitude}}},
+	      		zoom: 15,
+		        zoomControl: false,
+		        disableDefaultUI: true,
+		        mapTypeControl: false,
+		        mapTypeControlOptions: {
+		          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+		        },
+		        streetViewControl:false,
+		        panControl:false,
+	        };
+	        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	        map.mapTypes.set('map_style', styledMap);
+	        map.setMapTypeId('map_style');
+
+	        var marker = new google.maps.Marker({
+	            position: { lat: {{entity.adresse.latitude}}, lng: {{entity.adresse.longitude}}},
+	            map:map,
+	            title:"{{entity.nom}}",
+	            draggable: true
+	        });
+	        var contentString = "<h4>{{entity.nom}}</h4>"+
+	            "<div><p>{{entity.description}}</p></div>"+
+	            "<div><p>{{entity.adresse}}</p></div>";
+
+	        var infowindow = new google.maps.InfoWindow({
+	          content: contentString
+	        });
+
+	        google.maps.event.addListener(marker, 'click', function() {
+	        	infowindow.open(map,marker);
+	        });
+			google.maps.event.addListener( marker, "dragend", function( evenement ) {
+				var latlng = evenement.latLng.toUrlValue().split(",");
+				var newLatitude = latlng[0];
+				var newLongitude = latlng[1];
+				$("#buttonMapSave").attr("lat",newLatitude).attr("lng",newLongitude);
+				//alert(latitude+" / "+longitude);
+			});
+			google.maps.event.addListener( marker, "drag", function( evenement ) {
+				$('#buttonMapGroup').removeClass("hidden");
+			});
+
+			$("#buttonMapCancel").click(function(){
+			    $.ajax({
+			       url : "{{ path('adress_getCoords', { 'id': entity.adresse.id }) }}",
+			       type : 'GET',
+			       success : function(response, statut){
+			       		marker.setPosition({ lat:parseFloat(response.latitude), lng: parseFloat(response.longitude)});
+						$('#buttonMapGroup').addClass("hidden");
+			       }
+			    });
+			});
+
+			$("#buttonMapSave").click(function(){
+				var latitude = $("#buttonMapSave").attr("lat");
+				var longitude= $("#buttonMapSave").attr("lng");
+
+				var DATA = {'lat':latitude, 'lng': longitude};
+
+			    $.ajax({
+			       	url : "{{ path('adress_majCoords', {'id' : entity.adresse.id }) }}",
+			      	type : 'POST',
+		    		data: DATA,
+			       	success : function(response, statut){
+						$('#buttonMapGroup').addClass("hidden");
+			       	}
+			    });
+			});
+	  	}
+      	google.maps.event.addDomListener(window, 'load', initialize);
+
+  		$(".toggle-company-informations").click(function(){
+  			$(this).children('.glyphicon').toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up');
+ 			$( ".company-informations" ).toggle( "slow");
+  		});
+  		$(".toggle-company-contacts").click(function(){
+  			$(this).children('.glyphicon').toggleClass('glyphicon-chevron-up').toggleClass('glyphicon-chevron-down');
+ 			$( ".company-contacts" ).toggle( "slow");
+  		});
+  		$(".toggle-company-candidatures").click(function(){
+  			$(this).children('.glyphicon').toggleClass('glyphicon-chevron-up').toggleClass('glyphicon-chevron-down');
+ 			$( ".company-candidatures" ).toggle( "slow");
+  		});
+
+  		$(".button-del-company").click(function(e){
+	        if(!confirm("Attention, si vous supprimez cette entreprise vous perdez toutes ses données. Continuer ?")) {
+	            e.stopPropagation();
+	            e.preventDefault();
+	            return false;
+	        }
+  		});
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_USER:        [ROLE_USER]
+        ROLE_ADMIN:       [ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        # login area for backoffice users
+        backoffice:
+            context: primary_auth
+            pattern:            ^/backoffice
+            form_login:
+                provider:       fos_userbundle
+                login_path:     web_event_back_office_security_login
+                use_forward:    true
+                use_referer:    true
+                check_path:     web_event_back_office_security_check
+                #failure_path:   null
+                default_target_path: web_event_backofficebundle_home
+            logout:
+                path: web_event_back_office_security_logout
+                target: web_event_cms_homepage
+            anonymous:    true
+
+        # defaut login area for standard users
+        main:
+            context: primary_auth
+            pattern:            ^/
+            form_login:
+                provider:       fos_userbundle
+                login_path:     fos_user_security_login
+                use_forward:    true
+                use_referer:    true
+                check_path:     fos_user_security_check
+                #failure_path:   null
+                default_target_path: fos_user_profile_show
+            logout:
+                path: fos_user_security_logout
+                target: web_event_cms_homepage
+            anonymous:    true
+
+    access_control:
+        - { path: '^/backoffice', roles: ROLE_ADMIN }
+        - { path: '^/mon-compte', role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/profile, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/backoffice/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/mot-de-passe-oublie, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/deconnexion$, role: IS_AUTHENTICATED_FULLY }

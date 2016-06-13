@@ -1,0 +1,16 @@
+{% extends '::back-office.html.twig' %}
+
+{% block content_center %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <!-- Your Page Content Here -->
+        <!-- /.content-wrapper -->
+        {% block content %}
+
+        {% endblock %}
+    {% else %}
+        <!-- /.content-wrapper -->
+        {% block content_connexion %}
+
+        {% endblock %}
+    {% endif %}
+{% endblock %}

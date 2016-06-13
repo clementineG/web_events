@@ -1,0 +1,87 @@
+{% extends 'WebEventFrontOfficeBundle::layout-front.html.twig' %}
+{% block container %}
+
+    <!-- blog-4 -->
+    <section class="blog-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h1>{{ entity.h1 }}</h1>
+
+                    <h2>{{ entity.h2 }}</h2>
+
+                    <div class="img">
+                        {% set img_cover = entity.cover.id ~ '.'~entity.cover.path %}
+                        {{ img_cover }}
+                        <img src="{{ web_image('https://images.unsplash.com/photo-1441742917377-57f78ee0e582?q=80&fm=jpg&s=a79e8a2beba8b3a1ad251798a9024d8b') }}" width="538" height="242"
+                             alt="">
+                    </div>
+                    <div class="tags">
+                        <ul>
+                            <li><a href="#">{{ entity.event.eventCategory.name }}</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <span class="fui-time"></span> {{ entity.start|date('d-m-Y H:i:s') }} / <span
+                                        class="fui-time"></span> {{ entity.end|date('d-m-Y H:i:s') }}
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><span class="fui-arrow-right"></span> {{ entity.price }} €
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        {% if entity.place %}
+                            <p>
+                                {{ entity.place.name }}<br>
+
+                                {{ entity.place.address.address }}<br>
+                                {{ entity.place.address.ville }}<br>
+                            </p>
+                        {% else %}
+                            <p><span class="fui-location"></span>
+                                {{ entity.address.address }}<br>{{ entity.address.city }}</p>
+
+                        {% endif %}
+                    </div>
+                    </br>
+                    {% if entity.event.shortDescription|length > 1 %}
+                        <div>
+                            <p>{{ entity.event.shortDescription }}</p>
+
+                        </div>
+                    {% endif %}
+
+                    <hr>
+                    <p>{{ entity.description }}</p>
+
+                    {#<div class="quote">We have considered your needs in developing the html version of our UI Kit, which#}
+                    {#contains.#}
+                    {#</div>#}
+                    {#<p>We have a great surprise for Designmodo fans – our first free HTML user interface kit. Flat UI#}
+                    {#Free is made on the basis of Twitter Bootstrap in a stunning flat-style, and the kit also#}
+                    {#includes a PSD version for designers.</p>#}
+
+                </div>
+                <div class="col-sm-3 col-sm-offset-2">
+                    <div class="related-articles">
+                        <h6>Evènements relatifs</h6>
+                        <ul>
+                            {#{% if  editions|length > 0 %}#}
+                            {#{% for edition in editions %}#}
+                            {#<li>#}
+                            {#<a href="#">{{ edition.name }}</a>#}
+
+                            {#<div>{{ edition.dateStart }}</div>#}
+                            {#</li>#}
+                            {#{% endfor %}#}
+                            {#{% endif %}#}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends '::back-office.html.twig' %}
+
+    {% block header %}
+    {% endblock %}
+
+
+ {% block h1 %}
+Catégorie des liens
+ {% endblock %}
+{% block content %}
+
+<a href="{{ path('web_event_backofficebundle_linktype_new') }}"> Créer une catégorie de lien</a>
+    <div class="row">
+        <div class="col-md-7">
+   {# {% for entity in linkcategories %}
+
+        <div>{{ entity.name }}</div>
+
+        </div>
+    {% endfor %}#}
+
+    </div>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

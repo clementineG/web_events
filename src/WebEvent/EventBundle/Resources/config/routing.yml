@@ -1,0 +1,11 @@
+web_event_event_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WebEventEventBundle:Default:index }
+
+web_event_event_events_index:
+    path:     /evenements
+    defaults: { _controller: WebEventEventBundle:Events:index }
+
+web_event_event_event_show:
+    path:     /evenement/{id}
+    defaults: { _controller: WebEventEventBundle:Events:show }

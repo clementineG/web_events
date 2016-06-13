@@ -1,0 +1,51 @@
+{% extends 'WebEventFrontOfficeBundle::layout-front.html.twig' %}
+{% block container %}
+<div class="row">
+    {#<div class="col-xs-12 col-md-6">#}
+
+    {#</div>#}
+    {#<div class="col-xs-12 col-md-5">#}
+    <section class="projects-1">
+        <div class="container">
+            <div class="title">
+                <a href="#" class="active">All</a>
+                <a href="#">SEO</a>
+                <a href="#">Start Up</a>
+                <a href="#">Dev</a>
+
+            </div>
+            {% for edition in editions %}
+                <div class="head-box">
+                    <div class="brand">
+                        {{ edition.h1 }}
+                    </div>
+                    <p>{{ edition.event.eventCategory.name }}</p>
+
+                    <p>{{ edition.event.shortDescription }}</p>
+
+                    <div class="features">
+                        {#{% for edition in event.editions %}#}
+                        {#<div>#}
+                        {#<a href="#">#}
+                        {#<span class="fui-info"></span> edition.name#}
+                        {#</a>#}
+                        {#</div>#}
+                        {#{% endfor %}#}
+                        <div>
+                            <a href="{{ path('web_event_event_event_show' ,{ 'id': edition.idEdition }) }}">
+                                <span class="fui-mic"></span> En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div><br>
+            {% endfor %}
+
+        </div>
+        <!--/.container-->
+    </section>
+
+    {#</div>#}
+    {#</div>#}
+
+
+    {% endblock %}

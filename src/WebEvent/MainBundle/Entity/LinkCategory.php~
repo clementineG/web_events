@@ -1,0 +1,41 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: clementine
+ * Date: 29/07/15
+ * Time: 00:33
+ */
+
+namespace WebEvent\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * Address
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="WebEvent\MainBundle\Entity\AddressRepository")
+ */
+class LinkCategory
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id_link;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable = false)
+     */
+    protected $url;
+
+
+
+
+}

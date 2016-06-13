@@ -1,0 +1,19 @@
+web_event_main_places:
+    path:     /lieux/{city_selected}
+    defaults: { _controller: WebEventMainBundle:Place:changeview, city_selected:'Paris'}
+
+web_event_main_place_change:
+    path:    /lieux/{city_selected}
+    defaults:    { _controller: WebEventMainBundle:Place:changeview }
+    requirements: { _method: get }
+
+web_event_main_place_detail:
+    path:     /lieux/{city_selected}/{name}
+    defaults: { _controller: WebEventMainBundle:Place:show }
+
+
+web_event_front_office_team:
+    path:     /team
+    defaults: { _controller: WebEventMainBundle:Team:index }
+
+

@@ -1,0 +1,93 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="page-wrapper">
+        <!-- header-15 -->
+        <header class="header-15">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar col-sm-12" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle"></button>
+                            <a class="brand" href="{{ path('web_event_front_office_home') }}" title="Accueil WebEvents">
+                                <img src="{{ web_image('bundles/webeventfrontoffice/img/logo_beta_sm2.png').resize('100%') }}" alt="logo WebEvents">
+                            </a>
+                            {#{{ web_image('web/bundles/webeventfrontoffice/img/logo_beta_sm.png').resize('10%') }}#}
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav">
+                                <li><a href="#">Evènements</a></li> {# {{ path('web_event_event_events_index') }} #}
+                                <li><a href="{{ path('web_event_main_places') }}">Lieux</a></li> {##}
+                                <li><a href="#">Contact</a></li>{# {{ path('web_event_front_office_team') }} #}
+                            </ul>
+
+                            {#{% if user!="anon."  %}#}
+                                {#<select name="info" class=" navbar-form pull-right">#}
+                                    {#<optgroup label="Mon compte">#}
+                                        {#<a href="{{ path('web_event_main_places') }}"><option value="0">Mon profil</option></a>#}
+                                        {#<option value="1">Mes contacts</option>#}
+                                    {#</optgroup>fos_user_profile_show#}
+                                    {#<optgroup label="System">#}
+                                        {#<option value="2">Messages</option>#}
+                                        {#<option value="3">Préférences</option>#}
+                                        {#<a href="{{ path('fos_user_security_logout') }}"><option value="4" class="highlighted">Déconnexion</option></a>#}
+                                    {#</optgroup>#}
+                                {#</select>#}
+                                {#&#123;&#35;<form class="navbar-form pull-right">&#35;&#125;#}
+                                    {#&#123;&#35;&#123;&#35;<a class="btn" href="#">Mon compte</a>&#35;&#125;&#35;&#125;#}
+                                {#&#123;&#35;</form>&#35;&#125;#}
+                            {#{% else %}#}
+                                {#<form class="navbar-form pull-right">#}
+                                    {#<a class="btn" href="#">Connexion</a>#}
+                                {#</form>#}
+                                {#<form class="navbar-form pull-right">#}
+                                    {#<a class="btn" href="#">Inscription</a>#}
+                                {#</form>#}
+                            {#{% endif %}#}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-background"></div>
+        </header>
+        {% block container %}
+
+
+        {% endblock %}
+
+        <footer class="footer-14 bg-midnight-blue">
+            <div class="container">
+                {#<a class="brand pull-left" href="#"><img src="" width="41" height="21" alt=""></a>#}
+
+                <div class="social-btns pull-right">
+                    <a href="#">
+                        <div class="fui-vimeo"></div>
+                        <div class="fui-vimeo"></div>
+                    </a>
+                    <a href="#">
+                        <div class="fui-facebook"></div>
+                        <div class="fui-facebook"></div>
+                    </a>
+                    <a href="#">
+                        <div class="fui-twitter"></div>
+                        <div class="fui-twitter"></div>
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+
+                        <li class="active">
+                            <a href="#">Evènements</a>
+                        </li>
+                        <li>
+                            <a href="#">Lieux</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

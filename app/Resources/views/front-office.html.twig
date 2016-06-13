@@ -1,0 +1,143 @@
+{# add navigation current nav mark #}
+{% set route = app.request.get('_route') %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}WebEvents : votre agenda des évènements digitaux{% endblock %}</title>
+    <meta name="description" content="L'agenda des évènements web en France !" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {% block stylesheets %}
+        {% stylesheets 'bundles/webeventfrontoffice/css/*'
+        'bundles/webeventfrontoffice/css/libs/bootstrap.min.css'
+        'bundles/webeventfrontoffice/css/libs/bootstrap-theme.min.css'
+        'bundles/webeventfrontoffice/css/libs/flat-ui.css'
+        'bundles/webeventfrontoffice/css/libs/icon-font.css'
+        '@WebEventFrontOfficeBundle/Resources/public/css/front-office.css'
+
+        filter='cssrewrite' %}
+
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+    {% endblock %}
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- header-15 -->
+
+    <section class="header-15-sub bg-midnight-blue">
+        <div class="background">
+            &nbsp;
+        </div>
+        <div class="container">
+            <div class="hero-unit">
+                <h1>WebEvents</h1>
+                <h3>
+                    Restez connecté pour retrouver tous les événèments digitaux en un seul endroit !
+                </h3>
+            </div>
+            <div class="subscribe-form col-sm-4 col-sm-offset-4">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="votre adresse email">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">Prévenez-moi</button>
+                                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- content-3  -->
+    <footer class="footer-14">
+        <div class="container">
+            {#<a class="brand pull-left" href="#"><img src="" width="41" height="21"  alt=""></a>#}
+            <div class="social-btns pull-right">
+                {#<a href="#"><div class="fui-vimeo"></div><div class="fui-vimeo"></div></a>
+                <a href="#"><div class="fui-facebook"></div><div class="fui-facebook"></div></a>
+                <a href="#"><div class="fui-twitter"></div><div class="fui-twitter"></div></a>#}
+            </div>
+            <nav>
+                {# <ul>
+                     <li class="active">
+                         <a href="#">Home</a>
+                     </li>
+                     <li>
+                         <a href="#">Blog</a>
+                     </li>
+                     <li>
+                         <a href="#">Portfolio</a>
+                     </li>
+                     <li>
+                         <a href="#">Contact</a>
+                     </li>
+                 </ul>#}
+            </nav>
+        </div>
+    </footer>
+
+    <!-- footer-14 -->
+
+</div>
+
+
+
+
+
+
+
+
+{#
+<div class="container">
+
+    {% block header %}{% endblock %}
+    {% block flash %}
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}{% endblock footer %}
+</div>
+#}
+{% block javascripts %}
+    {% javascripts
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery-1.10.2.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/bootstrap.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/modernizr.custom.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/easing.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/froogaloop.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.backgroundvideo.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.bxslider.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.parallax.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.scrollTo-1.4.3.1-min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.sharrre.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.svg.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.svganim.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/masonry.pkgd.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/modernizr.custom.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/page-transitions.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/startup-kit.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.dataTables.min.js'
+    '@WebEventFrontOfficeBundle/Resources/public/js/libs/script.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        // get locale
+        locale = "{{ app.request.locale }}";
+        // get route
+        route = "{{ route }}";
+    </script>
+{% endblock %}
+
+</body>
+</html>

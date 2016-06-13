@@ -1,0 +1,13 @@
+web_event_back_office_security_login:
+    path:     /login
+    defaults: { _controller: WebEventBackOfficeBundle:Security:login }
+
+web_event_back_office_security_check:
+    path:     /login-check
+    defaults: { _controller: WebEventBackOfficeBundle:Security:check }
+    requirements:
+        _method: POST
+
+web_event_back_office_security_logout:
+    path:     /logout
+    defaults: { _controller: WebEventBackOfficeBundle:Security:logout }

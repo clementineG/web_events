@@ -1,0 +1,78 @@
+{# add navigation current nav mark #}
+{% set route = app.request.get('_route') %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}WebEvents : votre agenda des évènements digitaux{% endblock %}</title>
+    <meta name="description" content="L'agenda des évènements web en France !" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {% block stylesheets %}
+        {% stylesheets 'bundles/webeventfrontoffice/css/*'
+        'bundles/webeventfrontoffice/css/libs/bootstrap.min.css'
+        'bundles/webeventfrontoffice/css/libs/bootstrap-theme.min.css'
+        'bundles/webeventfrontoffice/css/libs/flat-ui.css'
+        'bundles/webeventfrontoffice/css/libs/icon-font.css'
+        'bundles/webeventfrontoffice/css/libs/ui-kit-styles.css'
+        'bundles/webeventfrontoffice/css/libs/crew4.css'
+        'bundles/webeventfrontoffice/css/libs/blog4.css'
+        '@WebEventFrontOfficeBundle/Resources/public/css/front-office.css'
+
+        filter='cssrewrite' %}
+
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+    {% endblock %}
+</head>
+<body>
+
+            <div class="body-container">
+                {% block body %}
+                {% endblock %}
+            </div>
+
+        {% block javascripts %}
+            {% javascripts
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery-1.10.2.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/bootstrap.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/modernizr.custom.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/easing.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/froogaloop.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.backgroundvideo.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.bxslider.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.parallax.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.scrollTo-1.4.3.1-min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.sharrre.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.svg.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.svganim.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/masonry.pkgd.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/modernizr.custom.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/page-transitions.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/startup-kit.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.dataTables.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/script.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/bootstrap-select.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/bootstrap-switch.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/flatui-checkbox.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/flatui-radio.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/html5shiv.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/icon-font-ie7.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.placeholder.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.tagsinput.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/jquery.ui.touch-punch.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/respond.min.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/typeahead.js'
+            '@WebEventFrontOfficeBundle/Resources/public/js/libs/application.js'
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script>
+                // get locale
+                locale = "{{ app.request.locale }}";
+                // get route
+                route = "{{ route }}";
+            </script>
+        {% endblock %}
+
+</body>
+</html>

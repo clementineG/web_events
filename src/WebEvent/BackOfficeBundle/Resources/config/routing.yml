@@ -1,0 +1,7 @@
+# SECURITY
+web_event_back_office_security:
+    resource: "@WebEventBackOfficeBundle/Resources/config/routing/security.yml"
+
+# BACKOFFICE
+web_event_app_back_office_bo:
+    resource: "@WebEventBackOfficeBundle/Resources/config/routing/backoffice.yml"
